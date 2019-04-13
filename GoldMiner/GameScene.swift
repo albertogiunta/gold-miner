@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
 
   private var screenBounds: CGRect = UIScreen.main.bounds
   private var top: SKShapeNode = SKShapeNode(rect: .zero)
@@ -20,6 +20,7 @@ class GameScene: SKScene {
   
   private var canTouch: Bool = true
   private var catchAction: SKAction?
+  private var isTouching: Bool = false
 
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -35,7 +36,7 @@ class GameScene: SKScene {
     self.bottom = Underground(rect: CGRect(x: 0, y: 0, width: self.screenBounds.width, height: self.screenBounds.height/3 * 2))
     self.top = SKShapeNode(rect: CGRect(x: 0, y: self.bottom.frame.maxY, width: self.screenBounds.width, height: self.screenBounds.height/3))
     
-    let dudeWidth: CGFloat = 50
+    let dudeWidth: CGFloat = 20
     self.dude = SKShapeNode(circleOfRadius: dudeWidth)
     self.dude.position = CGPoint(x: (self.screenBounds.width / CGFloat(2)) - dudeWidth / CGFloat(2), y: self.top.frame.minY)
     let dudePhysics = SKPhysicsBody(circleOfRadius: dudeWidth)
@@ -47,6 +48,8 @@ class GameScene: SKScene {
     self.hand.position = CGPoint(x: self.dude.frame.minX - dudeWidth * 2, y: self.dude.frame.minY)
     let handPhysics = SKPhysicsBody(circleOfRadius: dudeWidth)
     self.hand.physicsBody = handPhysics
+    handPhysics.categoryBitMask = Categories.hand.rawValue
+    handPhysics.contactTestBitMask = Categories.hand.rawValue | Categories.object.rawValue
     handPhysics.affectedByGravity = true
     handPhysics.friction = 0
     handPhysics.angularDamping = 0
@@ -89,11 +92,18 @@ class GameScene: SKScene {
     }
   }
   
+  func didBegin(_ contact: SKPhysicsContact) {
+    self.isTouching = true
+    print(isTouching)
+  }
+  
+  func didEnd(_ contact: SKPhysicsContact) {
+    self.isTouching = false
+  }
+  
   func move(goForward: Bool = true, count: Int = 0) {
     guard let catchAction = catchAction else { return }
-    print(self.hand.frame.midY)
-    print(count)
-    if self.hand.frame.midY < 0 {
+    if self.hand.frame.midY < 0 || self.isTouching {
       self.hand.run(catchAction.reversed(), completion: { [unowned self] in
         self.move(goForward: false, count: count - 1)
       })

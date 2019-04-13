@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 import SpriteKit
 
+enum Categories: UInt32 {
+  case hand = 0b0001
+  case object = 0b0010
+}
+
 class Underground: SKShapeNode {
 
   var objects: [UndergroundObjectModel] = []
@@ -29,8 +34,8 @@ class Underground: SKShapeNode {
     //create the objects
     //align them randomly but evenly distributed
 
-    let horizontalSpaces: CGFloat = 2
-    let verticalSpaces: CGFloat = 2
+    let horizontalSpaces: CGFloat = 3
+    let verticalSpaces: CGFloat = 3
     let maxSize = CGSize(width: UIScreen.main.bounds.width/horizontalSpaces, height: UIScreen.main.bounds.height/verticalSpaces * (2/3))
 
     self.objects.append(UndergroundObjectModel(type: .gold, size: .medium, maxSize: maxSize))
@@ -52,6 +57,12 @@ class Underground: SKShapeNode {
       let randomY = Int.random(in: Int(startingPoint.y + (width / 2))...Int(endingPoint.y - (width / 2)))
 
       object.element.view.position = CGPoint(x: randomX, y: randomY)
+      
+      let physicsBody = SKPhysicsBody(circleOfRadius: width / 2)
+      physicsBody.categoryBitMask = Categories.object.rawValue
+      physicsBody.affectedByGravity = false
+      physicsBody.isDynamic = false
+      
       self.addChild(object.element.view)
     }
   }
