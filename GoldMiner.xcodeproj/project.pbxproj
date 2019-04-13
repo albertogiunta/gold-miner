@@ -10,11 +10,11 @@
 		452E2F732261C967001DEED7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E2F722261C967001DEED7 /* AppDelegate.swift */; };
 		452E2F792261C967001DEED7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E2F782261C967001DEED7 /* GameScene.swift */; };
 		452E2F7B2261C967001DEED7 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E2F7A2261C967001DEED7 /* GameViewController.swift */; };
-		452E2F7E2261C967001DEED7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 452E2F7C2261C967001DEED7 /* Main.storyboard */; };
 		452E2F802261C969001DEED7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 452E2F7F2261C969001DEED7 /* Assets.xcassets */; };
-		452E2F832261C969001DEED7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 452E2F812261C969001DEED7 /* LaunchScreen.storyboard */; };
 		452E2F8E2261C969001DEED7 /* GoldMinerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E2F8D2261C969001DEED7 /* GoldMinerTests.swift */; };
 		452E2F992261C969001DEED7 /* GoldMinerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E2F982261C969001DEED7 /* GoldMinerUITests.swift */; };
+		D44BE2412261CB8B009CD804 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D44BE23D2261CB8B009CD804 /* LaunchScreen.storyboard */; };
+		D44BE2422261CB8B009CD804 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D44BE23F2261CB8B009CD804 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,9 +39,7 @@
 		452E2F722261C967001DEED7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		452E2F782261C967001DEED7 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		452E2F7A2261C967001DEED7 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		452E2F7D2261C967001DEED7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		452E2F7F2261C969001DEED7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		452E2F822261C969001DEED7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		452E2F842261C969001DEED7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		452E2F892261C969001DEED7 /* GoldMinerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoldMinerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		452E2F8D2261C969001DEED7 /* GoldMinerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldMinerTests.swift; sourceTree = "<group>"; };
@@ -49,6 +47,8 @@
 		452E2F942261C969001DEED7 /* GoldMinerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoldMinerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		452E2F982261C969001DEED7 /* GoldMinerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldMinerUITests.swift; sourceTree = "<group>"; };
 		452E2F9A2261C969001DEED7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D44BE23E2261CB8B009CD804 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D44BE2402261CB8B009CD804 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +101,10 @@
 			children = (
 				452E2F722261C967001DEED7 /* AppDelegate.swift */,
 				452E2F782261C967001DEED7 /* GameScene.swift */,
+				D44BE23D2261CB8B009CD804 /* LaunchScreen.storyboard */,
+				D44BE23F2261CB8B009CD804 /* Main.storyboard */,
 				452E2F7A2261C967001DEED7 /* GameViewController.swift */,
-				452E2F7C2261C967001DEED7 /* Main.storyboard */,
 				452E2F7F2261C969001DEED7 /* Assets.xcassets */,
-				452E2F812261C969001DEED7 /* LaunchScreen.storyboard */,
 				452E2F842261C969001DEED7 /* Info.plist */,
 			);
 			path = GoldMiner;
@@ -232,9 +232,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				452E2F7E2261C967001DEED7 /* Main.storyboard in Resources */,
+				D44BE2422261CB8B009CD804 /* Main.storyboard in Resources */,
 				452E2F802261C969001DEED7 /* Assets.xcassets in Resources */,
-				452E2F832261C969001DEED7 /* LaunchScreen.storyboard in Resources */,
+				D44BE2412261CB8B009CD804 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,20 +297,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		452E2F7C2261C967001DEED7 /* Main.storyboard */ = {
+		D44BE23D2261CB8B009CD804 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				452E2F7D2261C967001DEED7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		452E2F812261C969001DEED7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				452E2F822261C969001DEED7 /* Base */,
+				D44BE23E2261CB8B009CD804 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D44BE23F2261CB8B009CD804 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D44BE2402261CB8B009CD804 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
