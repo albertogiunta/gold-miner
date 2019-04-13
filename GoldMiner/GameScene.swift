@@ -13,7 +13,7 @@ class GameScene: SKScene {
 
   private var screenBounds: CGRect = UIScreen.main.bounds
   private var top: SKShapeNode = SKShapeNode(rect: .zero)
-  private var bottom: SKShapeNode = SKShapeNode(rect: .zero)
+  private var bottom: Underground = Underground(rect: .zero)
 
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -26,7 +26,7 @@ class GameScene: SKScene {
   }
 
   func setup() {
-    self.bottom = SKShapeNode(rect: CGRect(x: 0, y: 0, width: self.screenBounds.width, height: self.screenBounds.height/3 * 2))
+    self.bottom = Underground(rect: CGRect(x: 0, y: 0, width: self.screenBounds.width, height: self.screenBounds.height/3 * 2))
     self.addChild(self.bottom)
 
     self.top = SKShapeNode(rect: CGRect(x: 0, y: self.bottom.frame.maxY, width: self.screenBounds.width, height: self.screenBounds.height/3))
@@ -36,9 +36,6 @@ class GameScene: SKScene {
   func style() {
     self.backgroundColor = .black
     self.top.fillColor = .blue
-    self.bottom.fillColor = .brown
-    self.bottom.strokeColor = .brown
-
   }
 
   override func update(_ currentTime: TimeInterval) {
