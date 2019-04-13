@@ -18,12 +18,38 @@ struct UndergroundObjectModel {
   enum ObjectType {
     case gold
     case stone
+
+    static var random: ObjectType {
+      let number = Int.random(in: 0..<2)
+      switch number {
+      case 0:
+        return .gold
+      case 1:
+        return .stone
+      default:
+        return .gold
+      }
+    }
   }
 
   enum ObjectSize {
     case small
     case medium
     case large
+
+    static var random: ObjectSize {
+      let number = Int.random(in: 0..<3)
+      switch number {
+      case 0:
+        return .small
+      case 1:
+        return .medium
+      case 2:
+        return .large
+      default:
+        return .medium
+      }
+    }
   }
 
   var objectType: ObjectType
@@ -75,7 +101,7 @@ struct UndergroundObjectModel {
   }
 
   lazy var view: SKShapeNode = {
-    let view = SKShapeNode(circleOfRadius: min(self.size.width, self.size.height)/2)
+    let view = SKShapeNode(circleOfRadius: min(self.size.width, self.size.height, self.availableSpace.height - 1, self.availableSpace.width - 1)/2)
     view.fillColor = self.image
     return view
   }()

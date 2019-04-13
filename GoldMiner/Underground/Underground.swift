@@ -17,6 +17,12 @@ enum Categories: UInt32 {
 
 class Underground: SKShapeNode {
 
+  var rows: Int = 4 {
+    didSet {
+      self.update()
+    }
+  }
+
   var objects: [UndergroundObjectModel] = []
 
   override init() {
@@ -31,22 +37,16 @@ class Underground: SKShapeNode {
 
   func setup() {
 
-    //create the objects
-    //align them randomly but evenly distributed
+    let maxSize = CGSize(width: UIScreen.main.bounds.width/CGFloat(rows), height: UIScreen.main.bounds.height/CGFloat(rows) * (2/3))
 
-    let horizontalSpaces: CGFloat = 3
-    let verticalSpaces: CGFloat = 3
-    let maxSize = CGSize(width: UIScreen.main.bounds.width/horizontalSpaces, height: UIScreen.main.bounds.height/verticalSpaces * (2/3))
-
-    self.objects.append(UndergroundObjectModel(type: .gold, size: .medium, maxSize: maxSize))
-    self.objects.append(UndergroundObjectModel(type: .gold, size: .small, maxSize: maxSize))
-    self.objects.append(UndergroundObjectModel(type: .stone, size: .medium, maxSize: maxSize))
-    self.objects.append(UndergroundObjectModel(type: .gold, size: .large, maxSize: maxSize))
+    for i in 0..<(rows*rows) {
+      self.objects.append(UndergroundObjectModel(type: UndergroundObjectModel.ObjectType.random, size: UndergroundObjectModel.ObjectSize.random, maxSize: maxSize))
+    }
 
 
     for var object in self.objects.enumerated() {
       // get the size of the object and calculate the difference from the space it can occupy
-      let startingPoint = CGPoint(x: CGFloat(object.offset).truncatingRemainder(dividingBy: 2) * maxSize.width, y: CGFloat(Int(object.offset)/2) * maxSize.height)
+      let startingPoint = CGPoint(x: CGFloat(Int(object.offset % rows)) * maxSize.width, y: CGFloat(Int(object.offset/rows)) * maxSize.height)
       let endingPoint = CGPoint(x: startingPoint.x + maxSize.width, y: startingPoint.y + maxSize.height)
 
       let width = object.element.view.frame.width
@@ -73,6 +73,8 @@ class Underground: SKShapeNode {
   }
 
   func update() {
-
+    self.objects = []
+    self.removeAllChildren()
+    self.setup()
   }
 }
