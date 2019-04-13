@@ -13,7 +13,7 @@ class GameScene: SKScene {
 
   private var screenBounds: CGRect = UIScreen.main.bounds
   private var top: SKShapeNode = SKShapeNode(rect: .zero)
-  private var bottom: SKShapeNode = SKShapeNode(rect: .zero)
+  private var bottom: Underground = Underground(rect: .zero)
   
   private var dude: SKShapeNode = SKShapeNode(rect: .zero)
   private var hand: SKShapeNode = SKShapeNode(rect: .zero)
@@ -32,7 +32,7 @@ class GameScene: SKScene {
   }
 
   func setup() {
-    self.bottom = SKShapeNode(rect: CGRect(x: 0, y: 0, width: self.screenBounds.width, height: self.screenBounds.height/3 * 2))
+    self.bottom = Underground(rect: CGRect(x: 0, y: 0, width: self.screenBounds.width, height: self.screenBounds.height/3 * 2))
     self.top = SKShapeNode(rect: CGRect(x: 0, y: self.bottom.frame.maxY, width: self.screenBounds.width, height: self.screenBounds.height/3))
     
     let dudeWidth: CGFloat = 50
