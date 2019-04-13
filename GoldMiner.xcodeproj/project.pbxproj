@@ -101,11 +101,11 @@
 			children = (
 				452E2F722261C967001DEED7 /* AppDelegate.swift */,
 				452E2F782261C967001DEED7 /* GameScene.swift */,
-				D44BE23D2261CB8B009CD804 /* LaunchScreen.storyboard */,
-				D44BE23F2261CB8B009CD804 /* Main.storyboard */,
 				452E2F7A2261C967001DEED7 /* GameViewController.swift */,
 				452E2F7F2261C969001DEED7 /* Assets.xcassets */,
 				452E2F842261C969001DEED7 /* Info.plist */,
+				D44BE23D2261CB8B009CD804 /* LaunchScreen.storyboard */,
+				D44BE23F2261CB8B009CD804 /* Main.storyboard */,
 			);
 			path = GoldMiner;
 			sourceTree = "<group>";
