@@ -1,89 +1,93 @@
 //
 //  GameScene.swift
-//  GoldMiner
+//  SaveThePlanetAsteroids
 //
-//  Created by Bilyana Georgieva on 13/04/2019.
-//  Copyright © 2019 BG&AG. All rights reserved.
+//  Created by Riccardo Cipolleschi on 11/03/2019.
+//  Copyright © 2019 Bending Spoons S.p.a. All rights reserved.
 //
 
 import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
-  
-  private var label : SKLabelNode?
-  private var spinnyNode : SKShapeNode?
-  
-  override func didMove(to view: SKView) {
-    
-    // Get label node from scene and store it for use later
-    self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-    if let label = self.label {
-      label.alpha = 0.0
-      label.run(SKAction.fadeIn(withDuration: 2.0))
-    }
-    
-    // Create shape node to use during mouse interaction
-    let w = (self.size.width + self.size.height) * 0.05
-    self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-    
-    if let spinnyNode = self.spinnyNode {
-      spinnyNode.lineWidth = 2.5
-      
-      spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-      spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                        SKAction.fadeOut(withDuration: 0.5),
-                                        SKAction.removeFromParent()]))
-    }
+
+  private var screenBounds: CGRect = UIScreen.main.bounds
+  private var top: SKShapeNode = SKShapeNode(rect: .zero)
+  private var bottom: SKShapeNode = SKShapeNode(rect: .zero)
+
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
   }
-  
-  
-  func touchDown(atPoint pos : CGPoint) {
-    if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-      n.position = pos
-      n.strokeColor = SKColor.green
-      self.addChild(n)
-    }
+
+  override init(size: CGSize) {
+    super.init(size: size)
+    self.setup()
+    self.style()
   }
-  
-  func touchMoved(toPoint pos : CGPoint) {
-    if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-      n.position = pos
-      n.strokeColor = SKColor.blue
-      self.addChild(n)
-    }
+
+  func setup() {
+//    let cityWidth: CGFloat = (self.screenBounds.width - 40.0)
+//    let cityHeight: CGFloat = cityWidth * 9.0 / 16.0
+//    let cityX: CGFloat = 20
+//    let cityY: CGFloat = 0//cityHeight / 2.0
+//    let cityRect = CGRect(origin: CGPoint(x: cityX, y: cityY), size: CGSize(width: cityWidth, height: cityHeight))
+//
+//    self.top = SKShapeNode(ellipseIn: cityRect)
+//    self.addChild(self.top)
+//
+//    self.bottom = SKShapeNode(rect: CGRect(x: 0, y: 0, width: self.screenBounds.width, height: cityHeight/2.0))
+//    self.addChild(self.bottom)
+//
+//    self.label = SKLabelNode(text: "Score: \(score)")
+//    self.label.position = CGPoint(x: self.screenBounds.width / 2, y: self.screenBounds.height - 20 - 44)
+//    self.addChild(self.label)
+
+    self.bottom = SKShapeNode(rect: CGRect(x: 0, y: 0, width: self.screenBounds.width, height: self.screenBounds.height/3 * 2))
+    self.addChild(self.bottom)
+
+    self.top = SKShapeNode(rect: CGRect(x: 0, y: self.bottom.frame.maxY, width: self.screenBounds.width, height: self.screenBounds.height/3))
+    self.addChild(self.top)
   }
-  
-  func touchUp(atPoint pos : CGPoint) {
-    if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-      n.position = pos
-      n.strokeColor = SKColor.red
-      self.addChild(n)
-    }
+
+  func style() {
+    self.backgroundColor = .black
+    self.top.fillColor = .blue
+    self.bottom.fillColor = .brown
+    self.bottom.strokeColor = .brown
+
   }
-  
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    if let label = self.label {
-      label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-    }
-    
-    for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-  }
-  
-  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-    for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-  }
-  
-  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-  }
-  
-  override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-    for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-  }
-  
-  
+
+  //  func createAsteroid() {
+  //    let asteroid = SKShapeNode(circleOfRadius: CGFloat.random(in: 10..<50))
+  //    asteroid.fillColor = .gray
+  //    asteroid.strokeColor = .gray
+  //    asteroid.position = CGPoint(x: CGFloat.random(in: 0..<self.screenBounds.width), y: self.screenBounds.height)
+  //    let cityCenter = CGPoint(x: self.frame.width / 2.0, y: self.city.frame.height / 2.0)
+  //    let roadToCollisionAction = SKAction.move(to: cityCenter, duration: 4)
+  //    self.addChild(asteroid)
+  //    self.asteroids.append(asteroid)
+  //    asteroid.run(roadToCollisionAction) {
+  //      self.removeChildren(in: [asteroid])
+  //    }
+  //  }
+
   override func update(_ currentTime: TimeInterval) {
     // Called before each frame is rendered
+    //    guard let lastAsterodiTime = self.lastAsterodiTime else {
+    //      spawnAsteroid(currentTime: currentTime)
+    //      return
+    //    }
+    //
+    //    if currentTime - lastAsterodiTime > 1 {
+    //      spawnAsteroid(currentTime: currentTime)
+    //    }
+    //
+    //    self.label.text = "Score: \(self.score)"
   }
+
+  //  func spawnAsteroid(currentTime: TimeInterval) {
+  //    self.createAsteroid()
+  //    self.lastAsterodiTime = currentTime
+  //  }
 }
+
